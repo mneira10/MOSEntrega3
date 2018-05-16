@@ -190,6 +190,10 @@ class Network(object):
         self.fitness = fit
         return self.fitness
 
+    def cambiarPesos(self, otherNetwork):
+        self.weights = otherNetwork.weights[:]
+        self.biases = otherNetwork.biases[:]
+
 # Miscellaneous functions
 
 
