@@ -28,25 +28,35 @@ def alpha(network, network_prime, T):
 
 training_data, validation_data, test_data = mnist_loader.load_data_wrapper()
 
-
+# se crea una red neuronal principal,
+# una auxiliar para evaluar el nuevo punto
+# y una red para guardar la mejor red hasta el momento
 net = network.Network(sizes)
 net2 = network.Network(sizes)
 best = network.Network(sizes)
+
+# se igualan todas las redes al comienzo
 net2.cambiarPesos(net)
 best.cambiarPesos(net)
 
 arch = open("progreso.dat","a+")
+
+# se inicializa la temperatura 
 T = 0.10
 while(T>0):
+    #se muta la red
     mutar(net.weights, net.biases)
+    # se calcula la probabilidad de saltar
     talpha = alpha(net2,net,T)
-    # print("alpha: " + str(talpha))
+    # se determina si se salta
     if(talpha>np.random.rand()):
         print("entra")
+        # se cambian las redes relevantes si se salta
         net2.cambiarPesos(net)
         if(best.evaluateNormed(test_data)<net.evaluateNormed(test_data)):
             best.cambiarPesos(net2)
 
+    # se registran los cambios
     arch.write(str(T) + " " + str(best.evaluateNormed(test_data)) + "\n")
     
     T= T-0.0001
