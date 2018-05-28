@@ -7,7 +7,7 @@ Implementación de un algoritmo evolutivo para para el aprendizaje de una red ne
 Integrantes:
 
 - Mauricio Neira        201424001
-- ~~Camilo Anzola         201529838~~ (?)
+- Camilo Anzola         201529838
 - Juan Camilo Pinilla   201533888
 - Juan Diego Chaves     201533528    
 
